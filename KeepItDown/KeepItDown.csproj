@@ -23,11 +23,26 @@
     </ItemGroup>
 
     <ItemGroup>
-        <Reference Include="Assembly-CSharp">
-            <HintPath>lib/Assembly-CSharp.dll</HintPath>
+        <Reference Include="UnityEngine">
+            <HintPath>/home/kryptosynth/.steam/steam/steamapps/common/Lethal Company/Lethal Company_Data/Managed/UnityEngine.dll</HintPath>
+        </Reference>
+        <Reference Include="UnityEngine.CoreModule">
+            <HintPath>/home/kryptosynth/.steam/steam/steamapps/common/Lethal Company/Lethal Company_Data/Managed/UnityEngine.CoreModule.dll</HintPath>
         </Reference>
         <Reference Include="Unity.Netcode.Runtime">
-            <HintPath>lib/Unity.Netcode.Runtime.dll</HintPath>
+            <HintPath>/home/kryptosynth/.steam/steam/steamapps/common/Lethal Company/Lethal Company_Data/Managed/Unity.Netcode.Runtime.dll</HintPath>
+        </Reference>
+        <Reference Include="Unity.TextMeshPro">
+            <HintPath>/home/kryptosynth/.steam/steam/steamapps/common/Lethal Company/Lethal Company_Data/Managed/Unity.TextMeshPro.dll</HintPath>
+        </Reference>
+        <Reference Include="Assembly-CSharp">
+            <HintPath>/home/kryptosynth/.steam/steam/steamapps/common/Lethal Company/Lethal Company_Data/Managed/Assembly-CSharp.dll</HintPath>
+        </Reference>
+        <Reference Include="BepInEx">
+            <HintPath>/home/kryptosynth/.config/r2modmanPlus-local/LethalCompany/profiles/Default/BepInEx/core/BepInEx.dll</HintPath>
+        </Reference>
+        <Reference Include="0Harmony">
+            <HintPath>/home/kryptosynth/.config/r2modmanPlus-local/LethalCompany/profiles/Default/BepInEx/core/0Harmony.dll</HintPath>
         </Reference>
         <Reference Include="LethalSettings">
             <HintPath>lib/LethalSettings.dll</HintPath>
@@ -38,6 +53,6 @@
     </ItemGroup>
     
     <Target Name="CopyDLL" AfterTargets="PostBuildEvent">
-        <Copy SourceFiles="$(TargetDir)$(AssemblyName).dll" DestinationFolder="C:\Users\bobbo\AppData\Roaming\com.kesomannen.modmanager\lethal-company\profiles\dev\BepInEx\plugins\Kesomannen-KeepItDown\" />
+        <Copy SourceFiles="$(TargetDir)$(AssemblyName).dll" DestinationFolder="/home/kryptosynth/.config/r2modmanPlus-local/LethalCompany/profiles/Default/BepInEx/pluginsKesomannen-KeepItDown/" />
     </Target>
 </Project>
