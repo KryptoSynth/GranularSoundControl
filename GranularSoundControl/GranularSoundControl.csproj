@@ -1,0 +1,43 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netstandard2.1</TargetFramework>
+        <AssemblyName>GranularSoundControl</AssemblyName>
+        <Description>Volume tuning mod for Lethal Company</Description>
+        <Version>1.4.0</Version>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <LangVersion>latest</LangVersion>
+        <RootNamespace>GranularSoundControl</RootNamespace>
+        <Company>kryptosynth</Company>
+        <Product>GranularSoundControl</Product>
+    </PropertyGroup>
+
+    <ItemGroup Condition="'$(TargetFramework.TrimEnd(`0123456789`))' == 'net'">
+        <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.2" PrivateAssets="all" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="BepInEx.Analyzers" Version="1.0.8" PrivateAssets="all" />
+      <PackageReference Include="BepInEx.Core" Version="5.4.21" />
+      <PackageReference Include="UnityEngine.Modules" Version="2022.3.9" IncludeAssets="compile" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Reference Include="Unity.Netcode.Runtime">
+            <HintPath>lib/Unity.Netcode.Runtime.dll</HintPath>
+        </Reference>
+        <Reference Include="Assembly-CSharp">
+            <HintPath>lib/Assembly-CSharp.dll</HintPath>
+        </Reference>
+        <Reference Include="LethalSettings">
+            <HintPath>lib/LethalSettings.dll</HintPath>
+        </Reference>
+        <Reference Include="LethalConfig">
+            <HintPath>lib/LethalConfig.dll</HintPath>
+        </Reference>
+    </ItemGroup>
+    
+    <Target Name="CopyDLL" AfterTargets="PostBuildEvent">
+        <Copy SourceFiles="$(TargetDir)$(AssemblyName).dll" DestinationFolder="/home/kryptosynth/.config/r2modmanPlus-local/LethalCompany/profiles/Default/BepInEx/plugins/kryptosynth-GranularSoundControl/" />
+    </Target>
+</Project>

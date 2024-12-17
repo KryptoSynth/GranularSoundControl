@@ -4,15 +4,15 @@ using System.Linq;
 using BepInEx.Configuration;
 using UnityEngine;
 
-namespace KeepItDown; 
+namespace GranularSoundControl; 
 
-public class KeepItDownConfig {
+public class GranularSoundControlConfig {
     readonly Dictionary<string, VolumeConfig> _volumes = new();
     readonly ConfigFile _mainCfg;
     
     public IReadOnlyDictionary<string, VolumeConfig> Volumes => _volumes;
 
-    internal KeepItDownConfig(ConfigFile mainCfg) {
+    internal GranularSoundControlConfig(ConfigFile mainCfg) {
         _mainCfg = mainCfg;
     }
 
@@ -30,16 +30,16 @@ public class KeepItDownConfig {
     /// </summary>
     /// <param name="key">A unique key of the config.</param>
     /// <param name="section">The section of the config file. Usually your mod's name.</param>
-    /// <param name="cfg">The config file to use. Defaults to KeepItDown's config file.</param>
+    /// <param name="cfg">The config file to use. Defaults to GranularSoundControl's config file.</param>
     /// <returns>Whether or not the config was successfully added.</returns>
     public bool AddVolumeConfig(string key, string section, ConfigFile cfg = null) {
         if (_volumes.ContainsKey(key)) {
-            KeepItDownPlugin.Instance.Log.LogWarning($"Volume config for {key} already exists!");
+            GranularSoundControlPlugin.Instance.Log.LogWarning($"Volume config for {key} already exists!");
             return false;
         }
         
         _volumes[key] = CreateVolumeConfig(cfg ?? _mainCfg, key, section);
-        KeepItDownPlugin.Instance.Log.LogDebug($"Registered {key}");
+        GranularSoundControlPlugin.Instance.Log.LogDebug($"Registered {key}");
         return true;
     }
     
@@ -48,7 +48,7 @@ public class KeepItDownConfig {
     /// </summary>
     /// <param name="keys">Unique keys of the configs.</param>
     /// <param name="section">The section of the config file. Usually your mod's name.</param>
-    /// <param name="cfg">The config file to use. Defaults to KeepItDown's config file.</param>
+    /// <param name="cfg">The config file to use. Defaults to GranularSoundControl's config file.</param>
     /// <returns>Whether or not all configs were successfully added.</returns>
     public bool AddVolumeConfigs(IEnumerable<string> keys, string section, ConfigFile cfg = null) {
         return keys.Select(key => AddVolumeConfig(key, section, cfg)).All(x => x);
@@ -157,7 +157,7 @@ public class VolumeConfig : IDisposable {
     /// <summary>
     /// Represents a binding between a GameObject and a volume config.
     /// You can create bindings with <see cref="VolumeConfig.AddBinding"/> or
-    /// <see cref="KeepItDownPlugin.Bind"/>.
+    /// <see cref="GranularSoundControlPlugin.Bind"/>.
     /// </summary>
     public struct Binding {
         /// <summary>

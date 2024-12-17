@@ -3,12 +3,12 @@ using System.Text.RegularExpressions;
 using GameNetcodeStuff;
 using HarmonyLib;
 
-namespace KeepItDown; 
+namespace GranularSoundControl; 
 
 public static class SharedUI {
     public const string Name = "Keep It Down!";
-    public const string Guid = KeepItDownInfo.Guid;
-    public const string Version = KeepItDownInfo.Version;
+    public const string Guid = GranularSoundControlInfo.Guid;
+    public const string Version = GranularSoundControlInfo.Version;
     public const string Description = "Volume control for various sounds in the game.";
     
     static readonly Regex _nicifyRegex = new("(?<=[a-z])([A-Z])", RegexOptions.Compiled);
@@ -22,7 +22,7 @@ public static class SharedUI {
     }
 
     public static void ResetAllVolumes() {
-        foreach (var volumeConfig in KeepItDownPlugin.Instance.Config.Volumes.Values) {
+        foreach (var volumeConfig in GranularSoundControlPlugin.Instance.Config.Volumes.Values) {
             volumeConfig.NormalizedValue = 1f;
         }
     }

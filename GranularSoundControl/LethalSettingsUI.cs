@@ -4,14 +4,14 @@ using LethalSettings.UI;
 using LethalSettings.UI.Components;
 using UnityEngine;
 
-namespace KeepItDown; 
+namespace GranularSoundControl; 
 
 internal static class LethalSettingsUI {
     internal static void Init() {
         SliderComponent[] _sliders = null;
         Dictionary<SliderComponent, string> _sliderToConfigKey = new();
 
-        var config = KeepItDownPlugin.Instance.Config;
+        var config = GranularSoundControlPlugin.Instance.Config;
         _sliders = config.Volumes.Select(kvp => {
             kvp.Value.OnChanged += OnConfigChangedHandler;
 
@@ -51,7 +51,7 @@ internal static class LethalSettingsUI {
         return;
         
         void RefreshOrder(string searchTerm = null) {
-            var config = KeepItDownPlugin.Instance.Config;
+            var config = GranularSoundControlPlugin.Instance.Config;
 
             IEnumerable<string> orderedKeys;
             if (searchTerm == null) {
@@ -77,7 +77,7 @@ internal static class LethalSettingsUI {
 
         void OnSliderValueChanged(SliderComponent slider, float value) {
             if (!_sliderToConfigKey.TryGetValue(slider, out var key)) return;
-            if (!KeepItDownPlugin.Instance.TryGetConfig(key, out var config)) return;
+            if (!GranularSoundControlPlugin.Instance.TryGetConfig(key, out var config)) return;
 
             config.RawValue = value;
         }

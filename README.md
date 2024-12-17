@@ -18,4 +18,4 @@ This fork adds additional controls and categorizes them all in Lethal Config.
 
 ## Installation
 
-Add `KeepItDown.dll` to your `/BepInEx/plugins` in your mod profile folder.
+Extract `GranularSoundControl.zip` into, or move `GranularSoundControl.dll` to your `/BepInEx/plugins` in your mod profile folder.

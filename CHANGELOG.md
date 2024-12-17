@@ -1,6 +1,6 @@
 # Changelog
 
-## [Unreleased]
+## Unreleased
 
 ### Added
 
@@ -27,10 +27,10 @@
     - Engine
   - Miscellaneous:
     - Ship Door
-    - Time-Of-Day Music
 
 ### Changed
 
+- Changed all references from KeepItDown to GranularSoundControl.
 - Moved existing entries into categories:
   - Items:
     - Remote
@@ -56,13 +56,17 @@
     - Turret
     - Old Bird
     - Thunder
-    - nSpike Trap
+    - Spike Trap
   - Miscellaneous:
     - Scan
     - Ship Alarm
     - Ship Alarm Cord
     - Item Charger
     - TV
+  - Updated libraries:
+    - Assembly-CSharp v69
+    - LethalConfig 1.4.3
+    - LethalSettings 1.4.1
 
 ## 1.4.0 (2024-04-16)
 

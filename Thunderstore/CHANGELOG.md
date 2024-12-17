@@ -1,5 +1,73 @@
 # Changelog
 
+## Unreleased
+
+### Added
+
+- LethalConfig categories:
+  - Items
+  - Hazards
+  - Cruiser
+  - Miscellaneous
+  
+- New entries:
+  - Items:
+    - Shotgun
+    - Knife
+    - Clock
+    - Soccer Ball
+  - Hazards:
+    - Snare Flea Face Hug
+    - Spider
+    - Steam Valve
+  - Cruiser:
+    - Horn
+    - Radio
+    - Skid
+    - Engine
+  - Miscellaneous:
+    - Ship Door
+
+### Changed
+
+- Changed all references from KeepItDown to GranularSoundControl.
+- Moved existing entries into categories:
+  - Items:
+    - Remote
+    - Flashlight
+    - Walkie-talkie
+    - Spraycan
+    - Dentures
+    - Robot Toy
+    - Hairdryer
+    - Jetpack
+    - Radar Booster Ping
+    - Shovel
+    - Rubber Ducky
+    - Whoopie Cushion
+    - Extension Ladder
+    - Clownhorn
+    - Old Phone
+    - Stun Grenade
+    - Easter Egg
+  - Hazards:
+    - Jester
+    - Landmine
+    - Turret
+    - Old Bird
+    - Thunder
+    - Spike Trap
+  - Miscellaneous:
+    - Scan
+    - Ship Alarm
+    - Ship Alarm Cord
+    - Item Charger
+    - TV
+  - Updated libraries:
+    - Assembly-CSharp v69
+    - LethalConfig 1.4.3
+    - LethalSettings 1.4.1
+
 ## 1.4.0 (2024-04-16)
 
 - Added 3 volume configs:
