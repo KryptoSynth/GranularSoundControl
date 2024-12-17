@@ -91,20 +91,24 @@ internal static class AudioPatches {
     [HarmonyPatch(typeof(VehicleController), "Start")]
     static void VehicleController_Start_Postfix(VehicleController __instance) {
         KeepItDownPlugin.Instance.BindAudioSource("CruiserHorn", __instance.hornAudio);
-        KeepItDownPlugin.Instance.BindAudioSource("CruiserRadio", __instance.radioAudio);
-        KeepItDownPlugin.Instance.BindAudioSource("CruiserSkid", __instance.skiddingAudio);
+    }
+    
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(VehicleController), "SetRadioValues")]
+    static void VehicleControllerRadio_Start_Postfix(VehicleController __instance) {
+        KeepItDownPlugin.Instance.BindAudioSources("CruiserRadio", __instance.radioAudio, __instance.radioInterference);
+    }
+    
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(VehicleController), "SetCarEffects")]
+    static void VehicleControllerEngine_Start_Postfix(VehicleController __instance) {
+        KeepItDownPlugin.Instance.BindAudioSources("CruiserSkid", __instance.tireAudio, __instance.skiddingAudio);
         KeepItDownPlugin.Instance.BindAudioSources(
             "CruiserEngine",
             __instance.vehicleEngineAudio,
             __instance.engineAudio1,
             __instance.engineAudio2
         );
-    }
-        
-    [HarmonyPostfix]
-    [HarmonyPatch(typeof(TimeOfDay), "Start")]
-    static void TimeOfDay_OnEnable_Postfix(TimeOfDay __instance) {
-        KeepItDownPlugin.Instance.BindAudioSource("TimeOfDayMusic", __instance.TimeOfDayMusic);
     }
     
     [HarmonyPostfix]
@@ -141,7 +145,7 @@ internal static class AudioPatches {
     }
     
     [HarmonyPostfix]
-    [HarmonyPatch(typeof(ButlerEnemyAI), nameof(ButlerEnemyAI.Start))]
+    [HarmonyPatch(typeof(ButlerEnemyAI), "Start")]
     static void JesterAI_Start_Postfix(ButlerEnemyAI __instance) {
         KeepItDownPlugin.Instance.BindAudioSource("ButlerMurderMusic", ButlerEnemyAI.murderMusicAudio);
     }
@@ -216,7 +220,7 @@ internal static class AudioPatches {
                 KeepItDownPlugin.Instance.BindAudioSource("Shovel", shovel.shovelAudio);
                 break;
             case ShotgunItem shotgunItem:
-                KeepItDownPlugin.Instance.BindAudioSource("Shotgun", shotgunItem.gunShootAudio);
+                KeepItDownPlugin.Instance.BindAudioSources("Shotgun", shotgunItem.gunShootAudio, shotgunItem.gunBulletsRicochetAudio);
                 break;
             case KnifeItem knifeItem:
                 KeepItDownPlugin.Instance.BindAudioSource("Knife", knifeItem.knifeAudio);
