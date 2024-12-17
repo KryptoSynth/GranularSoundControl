@@ -119,19 +119,19 @@ internal static class AudioPatches {
     
     [HarmonyPostfix]
     [HarmonyPatch(typeof(SandSpiderAI), nameof(SandSpiderAI.Start))]
-    static void JesterAI_Start_Postfix(SandSpiderAI __instance) {
+    static void SandSpider_Start_Postfix(SandSpiderAI __instance) {
         GranularSoundControlPlugin.Instance.BindAudioSource("Spider", __instance.footstepAudio);
     }
     
     [HarmonyPostfix]
     [HarmonyPatch(typeof(CentipedeAI), nameof(CentipedeAI.Start))]
-    static void JesterAI_Start_Postfix(CentipedeAI __instance) {
-        GranularSoundControlPlugin.Instance.BindAudioSource("SnareFleaFaceHug", __instance.clingingToPlayer2DAudio);
+    static void CentipedeAI_Start_Postfix(CentipedeAI __instance) {
+        GranularSoundControlPlugin.Instance.BindAudioSource("SnareFlea", __instance.clingingToPlayer2DAudio);
     }
     
     [HarmonyPostfix]
     [HarmonyPatch(typeof(RadMechAI), nameof(RadMechAI.Start))]
-    static void JesterAI_Start_Postfix(RadMechAI __instance) {
+    static void RedMechAI_Start_Postfix(RadMechAI __instance) {
         GranularSoundControlPlugin.Instance.BindAudioSources(
             "OldBird",
             __instance.blowtorchAudio,
@@ -142,27 +142,6 @@ internal static class AudioPatches {
             __instance.flyingDistantAudio,
             __instance.spotlightOnAudio
         );
-    }
-    
-    [HarmonyPostfix]
-    [HarmonyPatch(typeof(ButlerEnemyAI), "Start")]
-    static void JesterAI_Start_Postfix(ButlerEnemyAI __instance) {
-        GranularSoundControlPlugin.Instance.BindAudioSource("ButlerMurderMusic", ButlerEnemyAI.murderMusicAudio);
-    }
-    
-    
-    [HarmonyPostfix]
-    [HarmonyPatch(typeof(FlowerSnakeEnemy), nameof(FlowerSnakeEnemy.Start))]
-    static void JesterAI_Start_Postfix(FlowerSnakeEnemy __instance) {
-        GranularSoundControlPlugin.Instance.BindAudioSource("TulipSnakeFlapping", __instance.flappingAudio);
-    }
-    
-    [HarmonyPostfix]
-    [HarmonyPatch(typeof(CaveDwellerAI), nameof(CaveDwellerAI.Start))]
-    static void JesterAI_Start_Postfix(CaveDwellerAI __instance) {
-        GranularSoundControlPlugin.Instance.BindAudioSource("ManeaterCry", __instance.babyCryingAudio);
-        GranularSoundControlPlugin.Instance.BindAudioSource("ManeaterScream", __instance.screamAudio);
-        GranularSoundControlPlugin.Instance.BindAudioSource("ManeaterScreamMusic", __instance.screamAudioNonDiagetic);
     }
     
     [HarmonyPostfix]
@@ -204,6 +183,22 @@ internal static class AudioPatches {
     [HarmonyPatch(typeof(StormyWeather), "OnDisable")]
     static void StormyWeather_OnDisable_Postfix(StormyWeather __instance) {
         GranularSoundControlPlugin.Instance.RemoveBindings("Thunder", __instance.gameObject);
+    }
+    
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(EnemyAI), nameof(EnemyAI.PlayAudioOfCurrentState))]
+    static void EnemyAI_Start_Postfix(EnemyAI __instance) {
+        switch (__instance) {
+            case CaveDwellerAI caveDwellerAI:
+                GranularSoundControlPlugin.Instance.BindAudioSource("ManeaterScream", caveDwellerAI.screamAudio);
+                break;
+            case CentipedeAI centipedeAI:
+                GranularSoundControlPlugin.Instance.BindAudioSource("SnareFlea", centipedeAI.creatureSFX);
+                break;
+            case SandSpiderAI sandSpiderAI:
+                GranularSoundControlPlugin.Instance.BindAudioSource("Spider", sandSpiderAI.creatureSFX);
+                break;
+        }
     }
     
     [HarmonyPostfix]

@@ -30,53 +30,55 @@ public class GranularSoundControlPlugin : BaseUnityPlugin {
         Config = new GranularSoundControlConfig(base.Config);
         AddConfigs(new[] {
             "Airhorn",
-            "Boombox",
             "CashRegister",
             "Remote",
-            "Flashlight",
-            "Walkie-talkie",
-            "Spraycan",
             "Dentures",
             "RobotToy",
             "Hairdryer",
-            "Jetpack",
-            "RadarBoosterPing",
-            "Shovel",
             "RubberDucky",
             "WhoopieCushion",
-            "ExtensionLadder",
             "Clownhorn",
             "OldPhone",
-            "StunGrenade",
             "Shotgun",
             "EasterEgg",
             "Knife",
             "Clock",
             "SoccerBall",
-        }, "Items");
+        }, "Scrap");
+        
+        AddConfigs(new[] {
+            "Boombox",
+            "Flashlight",
+            "Walkie-talkie",
+            "Spraycan",
+            "Jetpack",
+            "RadarBoosterPing",
+            "Shovel",
+            "ExtensionLadder",
+            "StunGrenade",
+        }, "Tools");
         
         AddConfigs(new[] {
             "Landmine",
-            "Jester",
-            "SnareFleaFaceHug",
-            "Spider",
             "Thunder",
             "Turret",
             "SteamValve",
-            "OldBird",
             "SpikeTrap",
-            "ButlerMurderMusic",
-            "TulipSnakeFlapping",
-            "ManeaterCry",
-            "ManeaterScream",
-            "ManeaterScreamMusic",
         }, "Hazards");
         
         AddConfigs(new[] {
-            "CruiserHorn",
-            "CruiserRadio",
-            "CruiserSkid",
-            "CruiserEngine"
+            "Jester",
+            "SnareFlea",
+            "Spider",
+            "OldBird",
+            "ManeaterScream",
+        }, "Entities");
+        
+        AddConfigs(new[] {
+            "Horn",
+            "Radio",
+            "Skidding",
+            "Engine"
         }, "Cruiser");
         
         AddConfigs(new[] {
