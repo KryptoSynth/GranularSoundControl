@@ -6,7 +6,7 @@ using HarmonyLib;
 namespace GranularSoundControl; 
 
 public static class SharedUI {
-    public const string Name = "Keep It Down!";
+    public const string Name = "GranularSoundControl";
     public const string Guid = GranularSoundControlInfo.Guid;
     public const string Version = GranularSoundControlInfo.Version;
     public const string Description = "Volume control for various sounds in the game.";

@@ -10,12 +10,16 @@ This fork adds additional controls and categorizes them all in Lethal Config.
 
 # _LethalConfig Menu_
 
-![LethalConfig Settings Window](https://github.com/Kesomannen/KeepItDown/assets/113015915/7b6c2ee7-2800-4e43-a7ce-9676cf6f8e89)
-
-# _LethalSettings Menu_
-
-![LethalSettings Settings Window](https://github.com/Kesomannen/KeepItDown/assets/113015915/82942dd0-14a6-41f3-96d6-c31efbb0391e)
+![LethalConfig Settings Window](https://github.com/user-attachments/assets/6b177e2f-4b3a-49ef-b24a-25fb27576862)
 
 ## Installation
 
 Extract `GranularSoundControl.zip` into, or move `GranularSoundControl.dll` to your `/BepInEx/plugins` in your mod profile folder.
+
+## Known Issues
+
+- Cruiser Radio volume doesn't scale properly.
+
+## Known Incompatibilities
+
+- [KeepItDown](https://github.com/Kesomannen/KeepItDown) by [Kesomannen](https://github.com/Kesomannen)
