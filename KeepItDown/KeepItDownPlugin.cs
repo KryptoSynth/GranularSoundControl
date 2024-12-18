@@ -30,37 +30,65 @@ public class KeepItDownPlugin : BaseUnityPlugin {
         Config = new KeepItDownConfig(base.Config);
         AddConfigs(new[] {
             "Airhorn",
-            "Boombox",
             "CashRegister",
             "Remote",
-            "Flashlight",
-            "Walkie-talkie",
-            "Scan",
-            "Spraycan",
             "Dentures",
             "RobotToy",
             "Hairdryer",
+            "RubberDucky",
+            "WhoopieCushion",
+            "Clownhorn",
+            "OldPhone",
+            "Shotgun",
+            "EasterEgg",
+            "Knife",
+            "Clock",
+            "SoccerBall",
+        }, "Scrap");
+        
+        AddConfigs(new[] {
+            "Boombox",
+            "Flashlight",
+            "Walkie-talkie",
+            "Spraycan",
             "Jetpack",
             "RadarBoosterPing",
+            "Shovel",
+            "ExtensionLadder",
+            "StunGrenade",
+        }, "Tools");
+        
+        AddConfigs(new[] {
+            "Landmine",
+            "Thunder",
+            "Turret",
+            "SteamLeak",
+            "SpikeTrap",
+        }, "Hazards");
+        
+        AddConfigs(new[] {
+            "Jester",
+            "SnareFlea",
+            "Spider",
+            "OldBird",
+            "ManeaterScream",
+        }, "Entities");
+        
+        AddConfigs(new[] {
+            "Horn",
+            "Radio",
+            "Skidding",
+            "Engine"
+        }, "Cruiser");
+        
+        AddConfigs(new[] {
+            "Scan",
             "ShipAlarm",
             "ShipAlarmCord",
             "ItemCharger",
-            "Shovel",
-            "RubberDucky",
-            "Landmine",
-            "Jester",
-            "Thunder",
-            "WhoopieCushion",
-            "ExtensionLadder",
-            "Turret",
             "TV",
-            "Clownhorn",
-            "OldPhone",
-            "StunGrenade",
-            "OldBird",
-            "EasterEgg",
-            "SpikeTrap",
-        }, "Vanilla");
+            "ShipDoor",
+        }, "Miscellaneous");
 
         var harmony = new Harmony(KeepItDownInfo.Guid);
         harmony.PatchAll(typeof(AudioPatches));
@@ -109,7 +137,7 @@ public class KeepItDownPlugin : BaseUnityPlugin {
     /// </param>
     /// <param name="baseVolume">The default volume, will be scaled by the config value.</param>
     /// <param name="volumeSetter">An action to set the raw volume.</param>
-    /// <returns>Whether or not the binding was successfully created.</returns>
+    /// <returns>Whether the binding was successfully created.</returns>
     internal bool Bind(string key, GameObject gameObject, float baseVolume, Action<float> volumeSetter) {
         if (!TryGetConfig(key, out var volumeConfig)) {
             Log.LogWarning($"Trying to bind volume config for {key}, but it doesn't exist");
@@ -125,7 +153,7 @@ public class KeepItDownPlugin : BaseUnityPlugin {
     /// </summary>
     /// <param name="key">The key of the config.</param>
     /// <param name="audioSource">The AudioSource to bind to.</param>
-    /// <returns>Whether or not the binding was successfully created.</returns>
+    /// <returns>Whether the binding was successfully created.</returns>
     internal bool BindAudioSource(string key, AudioSource audioSource) {
         return Bind(key, audioSource.gameObject, audioSource.volume, v => audioSource.volume = v);
     }
@@ -135,7 +163,7 @@ public class KeepItDownPlugin : BaseUnityPlugin {
     /// </summary>
     /// <param name="key">The key of the config.</param>
     /// <param name="audioSources">The AudioSources to bind to.</param>
-    /// <returns>Whether or not the binding was successfully created.</returns>
+    /// <returns>Whether the binding was successfully created.</returns>
     internal bool BindAudioSources(string key, params AudioSource[] audioSources) {
         return audioSources.All(audioSource => BindAudioSource(key, audioSource));
     }
@@ -145,7 +173,7 @@ public class KeepItDownPlugin : BaseUnityPlugin {
     /// </summary>
     /// <param name="key">The key of the config.</param>
     /// <param name="gameObject">The target GameObject.</param>
-    /// <returns>Whether or not the bindings were successfully removed.</returns>
+    /// <returns>Whether the bindings were successfully removed.</returns>
     internal bool RemoveBindings(string key, GameObject gameObject) {
         if (!TryGetConfig(key, out var volumeConfig)) {
             Log.LogWarning($"Trying to remove volume config bindings for {key}, but it doesn't exist");
