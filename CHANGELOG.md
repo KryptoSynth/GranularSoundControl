@@ -1,5 +1,15 @@
 # Changelog
 
+## 1.5.2 (2024-12-18)
+
+### Changed
+
+- Changed Assembly-CSharp to the NuGet package
+
+### Fixed
+
+- Fixed Cruiser strings
+
 ## 1.5.1 (2024-12-18)
 
 ### Changed

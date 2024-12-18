@@ -88,23 +88,23 @@ internal static class AudioPatches {
     }
     
     [HarmonyPostfix]
-    [HarmonyPatch(typeof(VehicleController), "Start")]
+    [HarmonyPatch(typeof(VehicleController), nameof(VehicleController.Start))]
     static void VehicleController_Start_Postfix(VehicleController __instance) {
-        GranularSoundControlPlugin.Instance.BindAudioSource("CruiserHorn", __instance.hornAudio);
+        GranularSoundControlPlugin.Instance.BindAudioSource("Horn", __instance.hornAudio);
     }
     
     [HarmonyPostfix]
-    [HarmonyPatch(typeof(VehicleController), "SetRadioValues")]
+    [HarmonyPatch(typeof(VehicleController), nameof(VehicleController.SetRadioValues))]
     static void VehicleControllerRadio_Start_Postfix(VehicleController __instance) {
-        GranularSoundControlPlugin.Instance.BindAudioSources("CruiserRadio", __instance.radioAudio, __instance.radioInterference);
+        GranularSoundControlPlugin.Instance.BindAudioSources("Radio", __instance.radioAudio, __instance.radioInterference);
     }
     
     [HarmonyPostfix]
-    [HarmonyPatch(typeof(VehicleController), "SetCarEffects")]
+    [HarmonyPatch(typeof(VehicleController), nameof(VehicleController.SetCarEffects))]
     static void VehicleControllerEngine_Start_Postfix(VehicleController __instance) {
-        GranularSoundControlPlugin.Instance.BindAudioSources("CruiserSkid", __instance.tireAudio, __instance.skiddingAudio);
+        GranularSoundControlPlugin.Instance.BindAudioSources("Skidding", __instance.tireAudio, __instance.skiddingAudio);
         GranularSoundControlPlugin.Instance.BindAudioSources(
-            "CruiserEngine",
+            "Engine",
             __instance.vehicleEngineAudio,
             __instance.engineAudio1,
             __instance.engineAudio2

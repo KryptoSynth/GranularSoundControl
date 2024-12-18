@@ -1,6 +1,6 @@
 {
     "name": "GranularSoundControl",
-    "version_number": "1.5.1",
+    "version_number": "1.5.2",
     "website_url": "https://github.com/KryptoSynth/GranularSoundControl",
     "description": "Volume tuning mod for various sounds in the game.",
     "dependencies": [
