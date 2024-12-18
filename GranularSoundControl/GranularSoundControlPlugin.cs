@@ -62,7 +62,7 @@ public class GranularSoundControlPlugin : BaseUnityPlugin {
             "Landmine",
             "Thunder",
             "Turret",
-            "SteamValve",
+            "SteamLeak",
             "SpikeTrap",
         }, "Hazards");
         

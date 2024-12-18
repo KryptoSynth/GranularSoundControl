@@ -72,7 +72,7 @@ internal static class AudioPatches {
     [HarmonyPatch(typeof(SteamValveHazard), "Start")]
     static void SteamValveHazard_Start_Postfix(SteamValveHazard __instance)
     {
-        GranularSoundControlPlugin.Instance.BindAudioSource("SteamValve", __instance.valveAudio);
+        GranularSoundControlPlugin.Instance.BindAudioSource("SteamLeak", __instance.valveAudio);
     }
     
     [HarmonyPostfix]

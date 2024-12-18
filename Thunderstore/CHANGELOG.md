@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.5.1 (2024-12-18)
+
+### Changed
+
+- Renamed Steam Valve to Steam Leak
+- Updated README.md
+
 ## 1.5.0 (2024-12-18)
 
 ### Added
@@ -35,7 +42,7 @@
 
 ### Changed
 
-- Changed all references from KeepItDown to GranularSoundControl.
+- Changed all references from KeepItDown to GranularSoundControl
 - Moved existing entries into categories:
   - Scrap:
     - Remote
