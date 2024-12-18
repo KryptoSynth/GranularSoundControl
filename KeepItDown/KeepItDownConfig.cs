@@ -4,15 +4,15 @@ using System.Linq;
 using BepInEx.Configuration;
 using UnityEngine;
 
-namespace GranularSoundControl; 
+namespace KeepItDown; 
 
-public class GranularSoundControlConfig {
+public class KeepItDownConfig {
     readonly Dictionary<string, VolumeConfig> _volumes = new();
     readonly ConfigFile _mainCfg;
     
     public IReadOnlyDictionary<string, VolumeConfig> Volumes => _volumes;
 
-    internal GranularSoundControlConfig(ConfigFile mainCfg) {
+    internal KeepItDownConfig(ConfigFile mainCfg) {
         _mainCfg = mainCfg;
     }
 
@@ -34,12 +34,12 @@ public class GranularSoundControlConfig {
     /// <returns>Whether or not the config was successfully added.</returns>
     public bool AddVolumeConfig(string key, string section, ConfigFile cfg = null) {
         if (_volumes.ContainsKey(key)) {
-            GranularSoundControlPlugin.Instance.Log.LogWarning($"Volume config for {key} already exists!");
+            KeepItDownPlugin.Instance.Log.LogWarning($"Volume config for {key} already exists!");
             return false;
         }
         
         _volumes[key] = CreateVolumeConfig(cfg ?? _mainCfg, key, section);
-        GranularSoundControlPlugin.Instance.Log.LogDebug($"Registered {key}");
+        KeepItDownPlugin.Instance.Log.LogDebug($"Registered {key}");
         return true;
     }
     
@@ -157,7 +157,7 @@ public class VolumeConfig : IDisposable {
     /// <summary>
     /// Represents a binding between a GameObject and a volume config.
     /// You can create bindings with <see cref="VolumeConfig.AddBinding"/> or
-    /// <see cref="GranularSoundControlPlugin.Bind"/>.
+    /// <see cref="KeepItDownPlugin.Bind"/>.
     /// </summary>
     public struct Binding {
         /// <summary>

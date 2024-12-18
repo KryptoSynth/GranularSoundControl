@@ -8,18 +8,18 @@ using HarmonyLib;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace GranularSoundControl; 
+namespace KeepItDown; 
 
 // ReSharper disable Unity.NoNullPropagation
 
-[BepInPlugin(GranularSoundControlInfo.Guid, GranularSoundControlInfo.Name, GranularSoundControlInfo.Version)]
+[BepInPlugin(KeepItDownInfo.Guid, KeepItDownInfo.Name, KeepItDownInfo.Version)]
 [BepInDependency(LethalSettingsGuid, BepInDependency.DependencyFlags.SoftDependency)]
 [BepInDependency(LethalConfigGuid, BepInDependency.DependencyFlags.SoftDependency)]
-public class GranularSoundControlPlugin : BaseUnityPlugin {
-    public static GranularSoundControlPlugin Instance { get; private set; }
+public class KeepItDownPlugin : BaseUnityPlugin {
+    public static KeepItDownPlugin Instance { get; private set; }
     
     internal ManualLogSource Log => Logger;
-    internal new GranularSoundControlConfig Config { get; private set; }
+    internal new KeepItDownConfig Config { get; private set; }
     
     const string LethalSettingsGuid = "com.willis.lc.lethalsettings";
     const string LethalConfigGuid = "ainavt.lc.lethalconfig";
@@ -27,7 +27,7 @@ public class GranularSoundControlPlugin : BaseUnityPlugin {
     void Awake() {
         Instance = this;
         
-        Config = new GranularSoundControlConfig(base.Config);
+        Config = new KeepItDownConfig(base.Config);
         AddConfigs(new[] {
             "Airhorn",
             "CashRegister",
@@ -90,7 +90,7 @@ public class GranularSoundControlPlugin : BaseUnityPlugin {
             "ShipDoor",
         }, "Miscellaneous");
 
-        var harmony = new Harmony(GranularSoundControlInfo.Guid);
+        var harmony = new Harmony(KeepItDownInfo.Guid);
         harmony.PatchAll(typeof(AudioPatches));
         
         var lethalSettingsInstalled = Chainloader.PluginInfos.ContainsKey(LethalSettingsGuid);
@@ -109,15 +109,15 @@ public class GranularSoundControlPlugin : BaseUnityPlugin {
             Log.LogWarning("Neither LethalSettings nor LethalConfig found, no UI will be available");
         }
         
-        Log.LogInfo($"{GranularSoundControlInfo.Guid} is loaded!");
+        Log.LogInfo($"{KeepItDownInfo.Guid} is loaded!");
     }
 
-    /// <inheritdoc cref="GranularSoundControlConfig.AddVolumeConfig"/>
+    /// <inheritdoc cref="KeepItDownConfig.AddVolumeConfig"/>
     internal bool AddConfig(string key, string section, ConfigFile cfg = null) {
         return Config.AddVolumeConfig(key, section, cfg);
     }
     
-    /// <inheritdoc cref="GranularSoundControlConfig.AddVolumeConfigs"/>
+    /// <inheritdoc cref="KeepItDownConfig.AddVolumeConfigs"/>
     internal bool AddConfigs(IEnumerable<string> keys, string section, ConfigFile cfg = null) {
         return Config.AddVolumeConfigs(keys, section, cfg);
     }

@@ -3,7 +3,7 @@ using LethalConfig;
 using LethalConfig.ConfigItems;
 using LethalConfig.ConfigItems.Options;
 
-namespace GranularSoundControl; 
+namespace KeepItDown; 
 
 internal static class LethalConfigUI {
     internal static void Init() {
@@ -11,7 +11,7 @@ internal static class LethalConfigUI {
         
         LethalConfigManager.SetModDescription(SharedUI.Description);
         
-        var volumeConfigs = GranularSoundControlPlugin.Instance.Config.Volumes;
+        var volumeConfigs = KeepItDownPlugin.Instance.Config.Volumes;
         
         /*
         LethalConfigManager.AddConfigItem(new GenericButtonConfigItem(

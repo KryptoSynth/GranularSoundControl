@@ -2,7 +2,7 @@
     "name": "GranularSoundControl",
     "version_number": "1.5.2",
     "website_url": "https://github.com/KryptoSynth/GranularSoundControl",
-    "description": "Volume tuning mod for various sounds in the game.",
+    "description": "Volume tuning mod for various sounds in the game. Fork of KeepItDown.",
     "dependencies": [
         "BepInEx-BepInExPack-5.4.2100"
     ]

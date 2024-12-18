@@ -2,14 +2,13 @@
 
     <PropertyGroup>
         <TargetFramework>netstandard2.1</TargetFramework>
-        <AssemblyName>GranularSoundControl</AssemblyName>
         <Description>Volume tuning mod for Lethal Company</Description>
         <Version>1.5.2</Version>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
         <LangVersion>latest</LangVersion>
-        <RootNamespace>GranularSoundControl</RootNamespace>
         <Company>kryptosynth</Company>
         <Product>GranularSoundControl</Product>
+        <PackageId>KeepItDown</PackageId>
     </PropertyGroup>
 
     <ItemGroup Condition="'$(TargetFramework.TrimEnd(`0123456789`))' == 'net'">
@@ -36,6 +35,6 @@
     </ItemGroup>
     
     <Target Name="CopyDLL" AfterTargets="PostBuildEvent">
-        <Copy SourceFiles="$(TargetDir)$(AssemblyName).dll" DestinationFolder="/home/kryptosynth/.config/r2modmanPlus-local/LethalCompany/profiles/Default/BepInEx/plugins/kryptosynth-GranularSoundControl/" />
+        <Copy SourceFiles="$(TargetDir)$(AssemblyName).dll" DestinationFolder="/home/kryptosynth/.config/r2modmanPlus-local/LethalCompany/profiles/Testing/BepInEx/plugins/GranularSoundControl/" />
     </Target>
 </Project>

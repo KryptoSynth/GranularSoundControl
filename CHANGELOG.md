@@ -1,5 +1,12 @@
 # Changelog
 
+## Unreleased
+
+### Changed
+
+- Reverted references from GranularSoundControl to KeepItDown
+- Mentioned KeepItDown in manifest.json
+
 ## 1.5.2 (2024-12-18)
 
 ### Changed
@@ -52,7 +59,7 @@
 
 ### Changed
 
-- Changed all references from KeepItDown to GranularSoundControl
+- Changed references from KeepItDown to GranularSoundControl
 - Moved existing entries into categories:
   - Scrap:
     - Remote
