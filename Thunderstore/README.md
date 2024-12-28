@@ -12,24 +12,19 @@
 
 ## Config Entries
 - Scrap:
-  - Remote
   - Dentures
   - Robot Toy
   - Hairdryer
-  - Rubber Ducky
   - Whoopie Cushion
   - Clownhorn
-  - Old Phone
   - Easter Egg
   - Knife
   - Clock
   - Soccer Ball
 - Tools:
-  - Flashlight
   - Walkie-talkie
   - Spraycan
   - Jetpack
-  - Radar Booster Ping
   - Shovel
   - Extension Ladder
   - Stun Grenade
@@ -45,7 +40,15 @@
   - Old Bird
   - Snare Flea
   - Spider
+  - Coil Head
+  - Eyeless Dog
+  - Spore Lizard
+  - Hoarding Bug
+  - Ghost Girl
+  - Thumper
+  - Nutcracker
   - Maneater Scream
+  - Barber
 - Cruiser:
   - Horn
   - Radio
@@ -53,11 +56,11 @@
   - Engine
 - Miscellaneous:
   - Scan
-  - Ship Alarm
-  - Ship Alarm Cord
+  - Loud Horn
   - Item Charger
   - TV
   - Ship Door
+  - Company Speaker
 
 ## Manual Installation
 
@@ -65,8 +68,10 @@ Extract `GranularSoundControl-[version].zip` into, or move `GranularSoundControl
 
 ## Known Issues
 
-- Cruiser Radio volume doesn't scale properly.
-
+- Loud Horn volume is inconsistent.
+- Extension Ladder, Turret and Old Bird configs don't affect all of their respective audio.
+- Coil Head, Ghost Girl and Spore Lizard configs don't affect their respective footstep audio.
+ 
 ## Known Incompatibilities
 
 - [KeepItDown](https://thunderstore.io/c/lethal-company/p/Kesomannen/KeepItDown/) by [Kesomannen

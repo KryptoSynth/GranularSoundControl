@@ -1,11 +1,49 @@
 # Changelog
 
-## Unreleased
+## 1.6.0 (2024-12-28)
+
+### Added
+
+- Entries:
+  - Coil Head
+  - Eyeless Dog
+  - Spore Lizard
+  - Hoarding Bug
+  - Ghost Girl
+  - Thumper
+  - Nutcracker
+  - Barber
+  - Company Speaker
 
 ### Changed
 
 - Reverted references from GranularSoundControl to KeepItDown
+- Renamed Ship Alarm to Loud Horn
 - Mentioned KeepItDown in manifest.json
+
+### Removed
+
+- Entries:
+  - Ship Alarm Cord
+  - Old Phone
+  - Rubber Ducky
+  - Flashlight
+  - Radar Booster Ping
+
+### Fixed 
+
+- Entries:
+  - Cruiser Radio
+  - Cruiser Skidding
+  - Walkie-talkie
+  - Jetpack
+  - Extension Ladder (semi-fixed)
+  - Turret (semi-fixed)
+  - Spider
+  - Jester
+  - Snare Flea
+  - Old Bird (semi-fixed)
+  - Loud Horn (semi-fixed)
 
 ## 1.5.2 (2024-12-18)
 
