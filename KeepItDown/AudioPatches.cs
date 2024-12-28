@@ -26,65 +26,40 @@ internal static class AudioPatches {
     }
     
     [HarmonyPostfix]
-    [HarmonyPatch(typeof(RadarBoosterItem), nameof(RadarBoosterItem.Start))]
-    static void RadarBoosterItem_Start_Postfix(RadarBoosterItem __instance) {
-        KeepItDownPlugin.Instance.BindAudioSource("RadarBoosterPing", __instance.pingAudio);
+    [HarmonyPatch(typeof(ShipAlarmCord), nameof(ShipAlarmCord.HoldCordDown))]
+    static void ShipAlarmCord_HoldCordDown_Postfix(ShipAlarmCord __instance) {
+        KeepItDownPlugin.Instance.BindAudioSourcesClampRange("LoudHorn", __instance.hornClose, __instance.hornFar);
     }
     
     [HarmonyPostfix]
-    [HarmonyPatch(typeof(ShipAlarmCord), "Start")]
-    static void ShipAlarmCord_Start_Postfix(ShipAlarmCord __instance) {
-        KeepItDownPlugin.Instance.BindAudioSources("ShipAlarm", __instance.hornClose, __instance.hornFar);
-        KeepItDownPlugin.Instance.BindAudioSource("ShipAlarmCord", __instance.cordAudio);
-    }
-    
-    [HarmonyPostfix]
-    [HarmonyPatch(typeof(BoomboxItem), nameof(BoomboxItem.Start))]
-    static void BoomboxItem_Start_Postfix(BoomboxItem __instance) {
-        KeepItDownPlugin.Instance.BindAudioSource("Boombox", __instance.boomboxAudio);
-    }
-    
-    [HarmonyPostfix]
-    [HarmonyPatch(typeof(WalkieTalkie), nameof(WalkieTalkie.Start))]
-    static void WalkieTalkie_Start_Postfix(WalkieTalkie __instance) {
-        KeepItDownPlugin.Instance.BindAudioSource("Walkie-talkie", __instance.thisAudio);
-    }
-    
-    [HarmonyPostfix]
-    [HarmonyPatch(typeof(FlashlightItem), nameof(FlashlightItem.Start))]
-    static void FlashlightItem_Start_Postfix(FlashlightItem __instance) {
-        KeepItDownPlugin.Instance.BindAudioSource("Flashlight", __instance.flashlightAudio);
-    }
-    
-    [HarmonyPostfix]
-    [HarmonyPatch(typeof(SprayPaintItem), nameof(SprayPaintItem.Start))]
-    static void SprayPaintItem_Start_Postfix(SprayPaintItem __instance) {
-        KeepItDownPlugin.Instance.BindAudioSource("Spraycan", __instance.sprayAudio);
-    }
-    
-    [HarmonyPostfix]
-    [HarmonyPatch(typeof(Landmine), "Start")]
+    [HarmonyPatch(typeof(Landmine), nameof(Landmine.Start))]
     static void Landmine_Start_Postfix(Landmine __instance) {
         KeepItDownPlugin.Instance.BindAudioSource("Landmine", __instance.mineAudio);
     }
     
-        [HarmonyPostfix]
-    [HarmonyPatch(typeof(SteamValveHazard), "Start")]
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(SteamValveHazard), nameof(SteamValveHazard.Start))]
     static void SteamValveHazard_Start_Postfix(SteamValveHazard __instance)
     {
         KeepItDownPlugin.Instance.BindAudioSource("SteamLeak", __instance.valveAudio);
     }
     
     [HarmonyPostfix]
-    [HarmonyPatch(typeof(SpikeRoofTrap), "Start")]
+    [HarmonyPatch(typeof(SpikeRoofTrap), nameof(SpikeRoofTrap.Start))]
     static void SpikeRoofTrap_Start_Postfix(SpikeRoofTrap __instance) {
         KeepItDownPlugin.Instance.BindAudioSource("SpikeTrap", __instance.spikeTrapAudio);
     }
     
     [HarmonyPostfix]
-    [HarmonyPatch(typeof(Turret), "Start")]
-    static void Turret_Start_Postfix(Turret __instance) {
-        KeepItDownPlugin.Instance.BindAudioSources("Turret", __instance.mainAudio, __instance.berserkAudio, __instance.farAudio);
+    [HarmonyPatch(typeof(Turret), nameof(Turret.SetTargetToPlayerBody))]
+    static void Turret_SetTargetToPlayerBody_Postfix(Turret __instance) {
+        KeepItDownPlugin.Instance.BindAudioSources(
+            "Turret",
+            __instance.mainAudio,
+            __instance.berserkAudio,
+            __instance.farAudio,
+            __instance.bulletCollisionAudio
+        );
     }
     
     [HarmonyPostfix]
@@ -95,14 +70,19 @@ internal static class AudioPatches {
     
     [HarmonyPostfix]
     [HarmonyPatch(typeof(VehicleController), nameof(VehicleController.SetRadioValues))]
-    static void VehicleControllerRadio_Start_Postfix(VehicleController __instance) {
-        KeepItDownPlugin.Instance.BindAudioSources("Radio", __instance.radioAudio, __instance.radioInterference);
+    static void VehicleController_SetRadioValues_Postfix(VehicleController __instance) {
+        KeepItDownPlugin.Instance.BindAudioSourcesClampRange("Radio", __instance.radioAudio, __instance.radioInterference);
     }
     
     [HarmonyPostfix]
     [HarmonyPatch(typeof(VehicleController), nameof(VehicleController.SetCarEffects))]
-    static void VehicleControllerEngine_Start_Postfix(VehicleController __instance) {
-        KeepItDownPlugin.Instance.BindAudioSources("Skidding", __instance.tireAudio, __instance.skiddingAudio);
+    static void VehicleController_SetCarEffects_Postfix(VehicleController __instance) {
+        KeepItDownPlugin.Instance.BindAudioSources(
+            "Skidding",
+            __instance.tireAudio,
+            __instance.rollingAudio,
+            __instance.skiddingAudio
+        );
         KeepItDownPlugin.Instance.BindAudioSources(
             "Engine",
             __instance.vehicleEngineAudio,
@@ -112,36 +92,34 @@ internal static class AudioPatches {
     }
     
     [HarmonyPostfix]
-    [HarmonyPatch(typeof(JesterAI), nameof(JesterAI.Start))]
-    static void JesterAI_Start_Postfix(JesterAI __instance) {
-        KeepItDownPlugin.Instance.BindAudioSource("Jester", __instance.farAudio);
+    [HarmonyPatch(typeof(NutcrackerEnemyAI), nameof(NutcrackerEnemyAI.TurnTorsoToTargetDegrees))]
+    static void NutcrackerEnemyAI_TurnTorsoToTargetDegrees_Postfix(NutcrackerEnemyAI __instance) {
+        KeepItDownPlugin.Instance.BindAudioSourceClampRange("Nutcracker", __instance.torsoTurnAudio);
     }
     
     [HarmonyPostfix]
-    [HarmonyPatch(typeof(SandSpiderAI), nameof(SandSpiderAI.Start))]
-    static void SandSpider_Start_Postfix(SandSpiderAI __instance) {
-        KeepItDownPlugin.Instance.BindAudioSource("Spider", __instance.footstepAudio);
+    [HarmonyPatch(typeof(NutcrackerEnemyAI), nameof(NutcrackerEnemyAI.StartInspectionTurn))]
+    static void NutcrackerEnemyAI_StartInspectionTurn_Postfix(NutcrackerEnemyAI __instance) {
+        KeepItDownPlugin.Instance.BindAudioSourceClampRange("Nutcracker", __instance.longRangeAudio);
     }
     
     [HarmonyPostfix]
-    [HarmonyPatch(typeof(CentipedeAI), nameof(CentipedeAI.Start))]
-    static void CentipedeAI_Start_Postfix(CentipedeAI __instance) {
-        KeepItDownPlugin.Instance.BindAudioSource("SnareFlea", __instance.clingingToPlayer2DAudio);
+    [HarmonyPatch(typeof(RadMechAI), nameof(RadMechAI.MoveTowardsThreat))]
+    static void RedMechAI_MoveTowardsThreat_Postfix(RadMechAI __instance) {
+        KeepItDownPlugin.Instance.BindAudioSources("OldBird", __instance.chargeForwardAudio);
     }
     
     [HarmonyPostfix]
-    [HarmonyPatch(typeof(RadMechAI), nameof(RadMechAI.Start))]
-    static void RedMechAI_Start_Postfix(RadMechAI __instance) {
-        KeepItDownPlugin.Instance.BindAudioSources(
-            "OldBird",
-            __instance.blowtorchAudio,
-            __instance.explosionAudio,
-            __instance.LocalLRADAudio,
-            __instance.LocalLRADAudio2,
-            __instance.chargeForwardAudio,
-            __instance.flyingDistantAudio,
-            __instance.spotlightOnAudio
-        );
+    [HarmonyPatch(typeof(ClaySurgeonAI), nameof(ClaySurgeonAI.SetMusicVolume))]
+    static void ClaySurgeonAI_SetMusicVolume_Postfix(ClaySurgeonAI __instance) {
+        KeepItDownPlugin.Instance.BindAudioSource("Barber", __instance.musicAudio2);
+    }
+    
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(StartOfRound), nameof(StartOfRound.Start))]
+    static void StartOfRound_Start_Postfix(StartOfRound __instance) {
+        KeepItDownPlugin.Instance.BindAudioSource("CompanySpeaker", __instance.speakerAudioSource);
+        KeepItDownPlugin.Instance.BindAudioSource("ShipDoor", __instance.shipDoorAudioSource);
     }
     
     [HarmonyPostfix]
@@ -155,19 +133,6 @@ internal static class AudioPatches {
     static void TVScript_OnDisable_Postfix(TVScript __instance) {
         KeepItDownPlugin.Instance.RemoveBindings("TV", __instance.tvSFX.gameObject);
     }
-    
-    [HarmonyPostfix]
-    [HarmonyPatch(typeof(StartOfRound), "OnEnable")]
-    static void StartOfRound_OnEnable_Postfix(StartOfRound __instance) {
-        KeepItDownPlugin.Instance.BindAudioSource("ShipDoor", __instance.shipDoorAudioSource);
-    }
-    
-    [HarmonyPostfix]
-    [HarmonyPatch(typeof(StartOfRound), "OnDisable")]
-    static void StartOfRound_OnDisable_Postfix(StartOfRound __instance) {
-        KeepItDownPlugin.Instance.RemoveBindings("ShipDoor", __instance.gameObject);
-    }
-    
     [HarmonyPostfix]
     [HarmonyPatch(typeof(StormyWeather), "OnEnable")]
     static void StormyWeather_OnEnable_Postfix(StormyWeather __instance) {
@@ -186,17 +151,77 @@ internal static class AudioPatches {
     }
     
     [HarmonyPostfix]
-    [HarmonyPatch(typeof(EnemyAI), nameof(EnemyAI.PlayAudioOfCurrentState))]
+    [HarmonyPatch(typeof(EnemyAI), nameof(EnemyAI.Start))]
     static void EnemyAI_Start_Postfix(EnemyAI __instance) {
         switch (__instance) {
-            case CaveDwellerAI caveDwellerAI:
-                KeepItDownPlugin.Instance.BindAudioSource("ManeaterScream", caveDwellerAI.screamAudio);
+            case JesterAI jesterAI:
+                KeepItDownPlugin.Instance.BindAudioSources(
+                    "Jester",
+                    jesterAI.farAudio,
+                    jesterAI.creatureSFX,
+                    jesterAI.creatureVoice
+                );
                 break;
             case CentipedeAI centipedeAI:
-                KeepItDownPlugin.Instance.BindAudioSource("SnareFlea", centipedeAI.creatureSFX);
+                KeepItDownPlugin.Instance.BindAudioSources(
+                    "SnareFlea",
+                    centipedeAI.clingingToPlayer2DAudio,
+                    centipedeAI.creatureSFX,
+                    centipedeAI.creatureVoice
+                );
                 break;
             case SandSpiderAI sandSpiderAI:
-                KeepItDownPlugin.Instance.BindAudioSource("Spider", sandSpiderAI.creatureSFX);
+                KeepItDownPlugin.Instance.BindAudioSources(
+                    "Spider",
+                    sandSpiderAI.footstepAudio,
+                    sandSpiderAI.creatureSFX,
+                    sandSpiderAI.creatureVoice
+                );
+                break;
+            case CrawlerAI crawlerAI:
+                KeepItDownPlugin.Instance.BindAudioSources("Thumper", crawlerAI.creatureSFX, crawlerAI.creatureVoice);
+                break;
+            case MouthDogAI mouthDogAI:
+                KeepItDownPlugin.Instance.BindAudioSources("EyelessDog", mouthDogAI.creatureSFX, mouthDogAI.creatureVoice);
+                break;
+            case SpringManAI springManAI:
+                KeepItDownPlugin.Instance.BindAudioSource("CoilHead",springManAI.creatureVoice);
+                break;
+            case DressGirlAI dressGirlAI:
+                KeepItDownPlugin.Instance.BindAudioSource("GhostGirl", dressGirlAI.creatureVoice);
+                break;
+            case NutcrackerEnemyAI nutcrackerEnemyAI:
+                KeepItDownPlugin.Instance.BindAudioSources("Nutcracker", nutcrackerEnemyAI.creatureSFX, nutcrackerEnemyAI.creatureVoice);
+                break;
+            case PufferAI pufferAI:
+                KeepItDownPlugin.Instance.BindAudioSources("SporeLizard", pufferAI.creatureSFX, pufferAI.creatureVoice);
+                break;
+            case HoarderBugAI hoarderBugAI:
+                KeepItDownPlugin.Instance.BindAudioSources("HoardingBug", hoarderBugAI.creatureSFX, hoarderBugAI.creatureVoice);
+                break;
+            case RadMechAI radMechAI:
+                KeepItDownPlugin.Instance.BindAudioSources(
+                    "OldBird",
+                    radMechAI.blowtorchAudio,
+                    radMechAI.explosionAudio,
+                    radMechAI.LocalLRADAudio,
+                    radMechAI.LocalLRADAudio2,
+                    radMechAI.spotlightOnAudio,
+                    radMechAI.engineSFX,
+                    radMechAI.creatureSFX,
+                    radMechAI.creatureVoice
+                );
+                break;
+            case CaveDwellerAI caveDwellerAI:
+                KeepItDownPlugin.Instance.BindAudioSources(
+                    "ManeaterScream",
+                    caveDwellerAI.screamAudio,
+                    caveDwellerAI.creatureSFX,
+                    caveDwellerAI.creatureVoice
+                );
+                break;
+            case ClaySurgeonAI claySurgeonAI:
+                KeepItDownPlugin.Instance.BindAudioSources("Barber", claySurgeonAI.musicAudio , claySurgeonAI.creatureSFX);
                 break;
         }
     }
@@ -205,14 +230,27 @@ internal static class AudioPatches {
     [HarmonyPatch(typeof(GrabbableObject), nameof(GrabbableObject.Start))]
     static void GrabbableObject_Start_Postfix(GrabbableObject __instance) {
         switch (__instance) {
-            case RemoteProp remoteProp:
-                KeepItDownPlugin.Instance.BindAudioSource("Remote", remoteProp.remoteAudio);
+            case BoomboxItem boomboxItem:
+                KeepItDownPlugin.Instance.BindAudioSource("Boombox", boomboxItem.boomboxAudio);
+                break;
+            case WalkieTalkie walkieTalkie:
+                KeepItDownPlugin.Instance.BindAudioSource("Walkie-talkie", walkieTalkie.target);
+                break;
+            case SprayPaintItem sprayPaintItem:
+                KeepItDownPlugin.Instance.BindAudioSource("Spraycan", sprayPaintItem.sprayAudio);
                 break;
             case JetpackItem jetpackItem:
-                KeepItDownPlugin.Instance.BindAudioSource("Jetpack", jetpackItem.jetpackAudio);
+                KeepItDownPlugin.Instance.BindAudioSources("Jetpack", jetpackItem.jetpackAudio, jetpackItem.jetpackBeepsAudio);
                 break;
             case Shovel shovel:
                 KeepItDownPlugin.Instance.BindAudioSource("Shovel", shovel.shovelAudio);
+                break;
+            case StunGrenadeItem stunGrenadeItem:
+                var name = stunGrenadeItem.name.Contains("Egg") ? "EasterEgg" : "StunGrenade";
+                KeepItDownPlugin.Instance.BindAudioSource(name, stunGrenadeItem.itemAudio);
+                break;
+            case WhoopieCushionItem whoopieCushionItem:
+                KeepItDownPlugin.Instance.BindAudioSource("WhoopieCushion", whoopieCushionItem.whoopieCushionAudio);
                 break;
             case ShotgunItem shotgunItem:
                 KeepItDownPlugin.Instance.BindAudioSources("Shotgun", shotgunItem.gunShootAudio, shotgunItem.gunBulletsRicochetAudio);
@@ -220,23 +258,19 @@ internal static class AudioPatches {
             case KnifeItem knifeItem:
                 KeepItDownPlugin.Instance.BindAudioSource("Knife", knifeItem.knifeAudio);
                 break;
-            case ClockProp clockProp:
-                KeepItDownPlugin.Instance.BindAudioSource("Clock", clockProp.tickAudio);
-                break;
             case SoccerBallProp soccerBallProp:
                 KeepItDownPlugin.Instance.BindAudioSource("SoccerBall", soccerBallProp.soccerBallAudio);
                 break;
-            case WhoopieCushionItem whoopieCushionItem:
-                KeepItDownPlugin.Instance.BindAudioSource("WhoopieCushion", whoopieCushionItem.whoopieCushionAudio);
-                break;
-            case ExtensionLadderItem extensionLadderItem:
-                KeepItDownPlugin.Instance.BindAudioSource("ExtensionLadder", extensionLadderItem.ladderAudio);
-                break;
-            case StunGrenadeItem stunGrenadeItem:
-                var name = stunGrenadeItem.name.Contains("Egg") ? "EasterEgg" : "StunGrenade";
-                KeepItDownPlugin.Instance.BindAudioSource(name, stunGrenadeItem.itemAudio);
+            case ClockProp clockProp:
+                KeepItDownPlugin.Instance.BindAudioSource("Clock", clockProp.tickAudio);
                 break;
         }
+    }
+    
+    [HarmonyPostfix]
+    [HarmonyPatch(typeof(ExtensionLadderItem), nameof(ExtensionLadderItem.StartLadderAnimation))]
+    static void ExtensionLadderItem_StartLadderAnimation_Postfix(ExtensionLadderItem __instance) {
+        KeepItDownPlugin.Instance.BindAudioSource("ExtensionLadder", __instance.ladderAudio);
     }
     
     [HarmonyPostfix]

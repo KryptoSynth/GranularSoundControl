@@ -31,14 +31,11 @@ public class KeepItDownPlugin : BaseUnityPlugin {
         AddConfigs(new[] {
             "Airhorn",
             "CashRegister",
-            "Remote",
             "Dentures",
             "RobotToy",
             "Hairdryer",
-            "RubberDucky",
             "WhoopieCushion",
             "Clownhorn",
-            "OldPhone",
             "Shotgun",
             "EasterEgg",
             "Knife",
@@ -48,11 +45,9 @@ public class KeepItDownPlugin : BaseUnityPlugin {
         
         AddConfigs(new[] {
             "Boombox",
-            "Flashlight",
             "Walkie-talkie",
             "Spraycan",
             "Jetpack",
-            "RadarBoosterPing",
             "Shovel",
             "ExtensionLadder",
             "StunGrenade",
@@ -70,8 +65,16 @@ public class KeepItDownPlugin : BaseUnityPlugin {
             "Jester",
             "SnareFlea",
             "Spider",
+            "CoilHead",
+            "SporeLizard",
+            "HoardingBug",
+            "Thumper",
+            "EyelessDog",
+            "GhostGirl",
+            "Nutcracker",
             "OldBird",
             "ManeaterScream",
+            "Barber"
         }, "Entities");
         
         AddConfigs(new[] {
@@ -83,11 +86,11 @@ public class KeepItDownPlugin : BaseUnityPlugin {
         
         AddConfigs(new[] {
             "Scan",
-            "ShipAlarm",
-            "ShipAlarmCord",
+            "LoudHorn",
             "ItemCharger",
             "TV",
             "ShipDoor",
+            "CompanySpeaker"
         }, "Miscellaneous");
 
         var harmony = new Harmony(KeepItDownInfo.Guid);
@@ -158,6 +161,10 @@ public class KeepItDownPlugin : BaseUnityPlugin {
         return Bind(key, audioSource.gameObject, audioSource.volume, v => audioSource.volume = v);
     }
     
+    internal bool BindAudioSourceClampRange(string key, AudioSource audioSource) {
+        return Bind(key, audioSource.gameObject, audioSource.minDistance = 0.4f, v => audioSource.volume = v);
+    }
+    
     /// <summary>
     /// Binds the volume of one or more AudioSources to a volume config.
     /// </summary>
@@ -166,6 +173,10 @@ public class KeepItDownPlugin : BaseUnityPlugin {
     /// <returns>Whether the binding was successfully created.</returns>
     internal bool BindAudioSources(string key, params AudioSource[] audioSources) {
         return audioSources.All(audioSource => BindAudioSource(key, audioSource));
+    }
+    
+    internal bool BindAudioSourcesClampRange(string key, params AudioSource[] audioSources) {
+        return audioSources.All(audioSource => BindAudioSourceClampRange(key, audioSource));
     }
     
     /// <summary>
