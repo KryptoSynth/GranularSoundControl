@@ -53,14 +53,13 @@
 
 ### Fixed
 
-- Fixed Cruiser strings
+- Cruiser strings
 
 ## 1.5.1 (2024-12-18)
 
 ### Changed
 
 - Renamed Steam Valve to Steam Leak
-- Updated README.md
 
 ## 1.5.0 (2024-12-18)
 
