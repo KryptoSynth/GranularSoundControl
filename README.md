@@ -18,6 +18,7 @@
   - Whoopie Cushion
   - Clownhorn
   - Easter Egg
+  - Shotgun
   - Knife
   - Clock
   - Soccer Ball
@@ -28,7 +29,6 @@
   - Shovel
   - Extension Ladder
   - Stun Grenade
-  - Shotgun
 - Hazards:
   - Landmine
   - Turret
