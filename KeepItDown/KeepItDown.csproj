@@ -18,23 +18,16 @@
     <ItemGroup>
       <PackageReference Include="BepInEx.Analyzers" Version="1.0.8" PrivateAssets="all" />
       <PackageReference Include="BepInEx.Core" Version="5.4.21" />
-      <PackageReference Include="LethalCompany.GameLibs.Steam" Version="67.0.0-ngd.0" />
+      <PackageReference Include="LethalCompany.GameLibs.Steam" Version="69.0.1-ngd.0" />
+      <PackageReference Include="AinaVT-LethalConfig" Version="1.4.6" />
+      <PackageReference Include="LethalSettings" Version="1.4.0" />
       <PackageReference Include="UnityEngine.Modules" Version="2022.3.9" IncludeAssets="compile" />
-    </ItemGroup>
-
-    <ItemGroup>
-        <Reference Include="Unity.Netcode.Runtime">
-            <HintPath>lib/Unity.Netcode.Runtime.dll</HintPath>
-        </Reference>
-        <Reference Include="LethalSettings">
-            <HintPath>lib/LethalSettings.dll</HintPath>
-        </Reference>
-        <Reference Include="LethalConfig">
-            <HintPath>lib/LethalConfig.dll</HintPath>
-        </Reference>
     </ItemGroup>
     
     <Target Name="CopyDLL" AfterTargets="PostBuildEvent">
         <Copy SourceFiles="$(TargetDir)$(AssemblyName).dll" DestinationFolder="/home/kryptosynth/.config/r2modmanPlus-local/LethalCompany/profiles/Testing/BepInEx/plugins/GranularSoundControl/" />
+    </Target>
+    <Target Name="CopyDLL" AfterTargets="PostBuildEvent">
+        <Copy SourceFiles="$(TargetDir)$(AssemblyName).dll" DestinationFolder="/home/kryptosynth/.local/share/com.kesomannen.gale/lethal-company/profiles/Testing/BepInEx/plugins/GranularSoundControl/" />
     </Target>
 </Project>

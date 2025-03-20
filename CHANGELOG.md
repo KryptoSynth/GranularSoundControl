@@ -1,8 +1,15 @@
-# Changelog
+# GranularSoundControl Changelog
+
+## Unreleased
+
+#### Changed
+
+- Renamed TV to Television
+- Changed LethalSettings and LethalConfig to the NuGet package
 
 ## 1.6.0 (2024-12-28)
 
-### Added
+#### Added
 
 - Entries:
   - Coil Head
@@ -15,13 +22,13 @@
   - Barber
   - Company Speaker
 
-### Changed
+#### Changed
 
 - Reverted references from GranularSoundControl to KeepItDown
 - Renamed Ship Alarm to Loud Horn
 - Mentioned KeepItDown in manifest.json
 
-### Removed
+#### Removed
 
 - Entries:
   - Ship Alarm Cord
@@ -30,7 +37,7 @@
   - Flashlight
   - Radar Booster Ping
 
-### Fixed 
+#### Fixed 
 
 - Entries:
   - Cruiser Radio
@@ -45,26 +52,25 @@
   - Old Bird (semi-fixed)
   - Loud Horn (semi-fixed)
 
-## 1.5.2 (2024-12-18)
+### 1.5.2 (2024-12-18)
 
-### Changed
+#### Changed
 
 - Changed Assembly-CSharp to the NuGet package
 
-### Fixed
+#### Fixed
 
-- Fixed Cruiser strings
+- Cruiser strings
 
-## 1.5.1 (2024-12-18)
+### 1.5.1 (2024-12-18)
 
-### Changed
+#### Changed
 
 - Renamed Steam Valve to Steam Leak
-- Updated README.md
 
 ## 1.5.0 (2024-12-18)
 
-### Added
+#### Added
 
 - LethalConfig categories:
   - Scrap
@@ -74,7 +80,7 @@
   - Cruiser
   - Miscellaneous
   
-- New entries:
+- Entries:
   - Scrap:
     - Knife
     - Clock
@@ -95,7 +101,7 @@
   - Miscellaneous:
     - Ship Door
 
-### Changed
+#### Changed
 
 - Changed references from KeepItDown to GranularSoundControl
 - Moved existing entries into categories:
@@ -136,6 +142,8 @@
   - Assembly-CSharp v69
   - LethalConfig 1.4.3
   - LethalSettings 1.4.1
+
+# KeepItDown Changelog
 
 ## 1.4.0 (2024-04-16)
 
