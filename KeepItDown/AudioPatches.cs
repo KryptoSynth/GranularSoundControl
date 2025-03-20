@@ -131,7 +131,7 @@ internal static class AudioPatches {
     [HarmonyPostfix]
     [HarmonyPatch(typeof(TVScript), "OnDisable")]
     static void TVScript_OnDisable_Postfix(TVScript __instance) {
-        KeepItDownPlugin.Instance.RemoveBindings("TV", __instance.tvSFX.gameObject);
+        KeepItDownPlugin.Instance.RemoveBindings("Television", __instance.tvSFX.gameObject);
     }
     [HarmonyPostfix]
     [HarmonyPatch(typeof(StormyWeather), "OnEnable")]

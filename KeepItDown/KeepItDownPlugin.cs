@@ -88,7 +88,7 @@ public class KeepItDownPlugin : BaseUnityPlugin {
             "Scan",
             "LoudHorn",
             "ItemCharger",
-            "TV",
+            "Television",
             "ShipDoor",
             "CompanySpeaker"
         }, "Miscellaneous");
